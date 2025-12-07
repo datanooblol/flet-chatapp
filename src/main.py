@@ -1,37 +1,23 @@
 import flet as ft
+from design.tokens import Layout
+from components.templates.chat_layout import ChatLayout
+from package.llms.ollama import OllamaLlama
 
-WIDTH = 430
-HEIGHT = 800
-SIDEBAR_WIDTH = 50  # Width for hamburger icon
+model = OllamaLlama()
 
 def main(page: ft.Page):
-    page.window.width = WIDTH
-    page.window.height = HEIGHT
+    page.window.width = Layout.WIDTH
+    page.window.height = Layout.HEIGHT
     page.window.resizable = False
     page.padding = 0
     page.spacing = 0
-    page.bgcolor = ft.Colors.WHITE
-    side_bar = ft.Column(
-        controls=[
-            ft.IconButton(
-                icon=ft.Icons.MENU,
-                icon_color=ft.Colors.BLACK,
-            ),
-        ],
+    
+    page.add(
+        ft.Row(
+            controls=[ChatLayout(page, model)],
+            expand=True
+        )
     )
-    chat_box = ft.Container(
-        width=WIDTH - SIDEBAR_WIDTH,
-        height=HEIGHT,
-        bgcolor=ft.Colors.GREY_100
-    )
-    chat_container = ft.Column(
-        controls=[
-            chat_box
-        ]
-    )
-    main_container = ft.Row([
-        side_bar,
-        chat_container
-    ])
-    page.add(main_container)
-ft.app(main)
+
+if __name__ == "__main__":
+    ft.app(target=main, assets_dir=".")

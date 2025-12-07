@@ -8,7 +8,8 @@ authors = [
     { name = "Flet developer", email = "you@example.com" }
 ]
 dependencies = [
-  "flet==0.28.3"
+  "boto3>=1.42.4",
+  "flet==0.28.3",
 ]
 
 [tool.flet]
@@ -32,6 +33,7 @@ path = "src"
 [tool.uv]
 dev-dependencies = [
     "flet[all]==0.28.3",
+    "ipykernel>=6.31.0",
 ]
 
 [tool.poetry]
