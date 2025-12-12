@@ -37,3 +37,8 @@ class ChatState:
             for file in e.files:
                 print(f"Selected: {file.name}")
                 print(f"Path: {file.path}")
+    
+    def clear_messages(self):
+        self.messages = []
+        self.chat_list.controls.clear()
+        self.page.update()

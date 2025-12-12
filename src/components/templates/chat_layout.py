@@ -15,16 +15,22 @@ def ChatLayout(page, model):
     
     def on_send(e):
         if message_input.value:
-            chat_state.send_message(message_input.value)
+            text = message_input.value
             message_input.value = ""
             page.update()
+            chat_state.send_message(text)
+    
+    message_input.on_submit = on_send
     
     def on_attach(e):
         chat_state.pick_file()
     
+    def on_refresh(e):
+        chat_state.clear_messages()
+    
     chat_container = ChatContainer(chat_list)
     input_row = ChatInput(message_input, on_send, on_attach)
-    nav_bar = NavBar("Chat")
+    nav_bar = NavBar("Chat", on_refresh=on_refresh)
     
     return ft.Container(
         bgcolor=Colors.BACKGROUND,

@@ -10,4 +10,5 @@ def TextField(hint_text="Type a message...", on_submit=None):
         content_padding=Spacing.SM,
         bgcolor=Colors.SURFACE,
         on_submit=on_submit,
+        shift_enter=True,
     )
